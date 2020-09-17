@@ -4,6 +4,8 @@
 
 {% block content %}
     <h1>Log-In</h1>
+    <p>If you don`t have an account <a href="{% url 'account:register' %}">Register here</a></p>
+
     {% if form.errors %}
         <p>your username and password  didn`t match please try again</p>
     {% else %}
