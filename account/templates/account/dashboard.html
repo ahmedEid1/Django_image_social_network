@@ -3,9 +3,23 @@
 
 {% block content %}
     <h1>Dashboard</h1>
+
+    {% with total_images=request.user.images_created %}
+        <p>
+            Welcome to your Dashboard you have shared {{ total_images }}
+            image{{ total_images|pluralize }}
+        </p>
+    {% endwith %}
+
     <p>
-        welcome to your dashboard. <br>
-        You can <a href="{% url 'account:edit' %}">Edit your profile</a> ,
+        Drag the following button to your bookmark toolbar to share images form other websites <br><br>
+        <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">
+            Share it!
+        </a>
+    </p>
+
+    <p>
+        You can also <a href="{% url 'account:edit' %}">Edit your profile</a> ,
         or <a href="{% url 'account:password_change' %}">Change your password</a>
     </p>
 {% endblock %}
