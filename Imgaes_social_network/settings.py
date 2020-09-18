@@ -139,9 +139,13 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
     'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
 
 ]
 
 SOCIAL_AUTH_FACEBOOK_KEY = '3513582488663443'
 SOCIAL_AUTH_FACEBOOK_SECRET = '1caf03118d9bdfeaa9208f2903d377ef'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '424712540218-s8eqb10b8j1o4le1dioup4navotn4bh8.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'GFWG7Xrqkxq1ucuZjy9BBkU1'
