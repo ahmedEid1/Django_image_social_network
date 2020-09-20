@@ -8,6 +8,7 @@ body {
     font-family:helvetica, sans-serif;
 }
 
+
 p {
     line-height: 1.8;
 }
@@ -215,7 +216,6 @@ ul.messages li a.close {
 }
 a.like, a.follow { float:right; margin-top:-8px; }
 
-#image-list { overflow:auto; }
 #image-list .image {
     float:left;
     width:220px;
@@ -225,7 +225,7 @@ a.like, a.follow { float:right; margin-top:-8px; }
     background:#eee;
 }
 #image-list img { width:220px; height:220px; }
-#image-list .info { padding:10px; }
+#image-list .info { padding:50px; }
 #image-list .info a { color:#333; }
 .image-likes div {
     float:left;
