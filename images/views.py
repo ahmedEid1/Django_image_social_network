@@ -12,7 +12,6 @@ from .models import Image
 from common.decorators import ajax_required
 from actions.utils import create_action
 
-
 r = redis.Redis(host=settings.REDIS_HOST,
                 port=settings.REDIS_PORT,
                 db=settings.REDIS_DB)
@@ -43,6 +42,7 @@ def image_create(request):
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
     total_views = r.incr(f'image:{image.id}:views')
+    r.zincrby('image_ranking', 1, image.id)
     return render(request, 'images/image/details.html',
                   {'section': 'images',
                    'image': image,
@@ -94,3 +94,17 @@ def image_list(request):
     return render(request,
                   'images/image/list.html',
                   {'section': 'images', 'images': images})
+
+
+@login_required
+def image_ranking(request):
+    images_ranking = r.zrange('image_ranking', 0, -1, desc=True)[:10]
+    images_ranking_ids = [int(id) for id in images_ranking]
+
+    most_viewed = list(Image.objects.filter(id__in=images_ranking_ids))
+
+    most_viewed.sort(key=lambda x: images_ranking_ids.index(x.id))
+
+    return render(request, 'images/image/ranking.html',
+                  {'section': 'images',
+                   'most_viewd': most_viewed})
