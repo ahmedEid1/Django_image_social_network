@@ -159,3 +159,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'GFWG7Xrqkxq1ucuZjy9BBkU1'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('account:user_detail', args=[u.username])
 }
+
+
+# using redis
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
