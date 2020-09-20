@@ -17,6 +17,8 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
 
+    total_likes = models.PositiveIntegerField(db_index=True, default=0)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
@@ -27,3 +29,6 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('-total_likes',)

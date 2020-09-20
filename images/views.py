@@ -58,8 +58,9 @@ def image_like(request):
                 image.users_like.remove(request.user)
             return JsonResponse({'status': 'ok'})
     except:
-        pass
-    return JsonResponse({'status': 'error'})
+        return JsonResponse({'status': 'exception'})
+
+    return JsonResponse({'status': 'end'})
 
 
 @login_required
